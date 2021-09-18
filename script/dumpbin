@@ -20,8 +20,11 @@ die 'Please install VS code for Microsoft\'s official dumpbin utility.'
     if ( $ARGV[0] ne '/exports' || !-f $ARGV[1] );
 #
 my %exports = App::dumpbin::exports( $ARGV[1] );
-for my $export ( keys %{ $exports{exports} } ) {
-    printf "%03X 0 %08X %s\n", $exports{exports}{$export}->[1], $exports{exports}{$export}->[0],
+for my $export (
+    sort { $exports{exports}{$a}[1] <=> $exports{exports}{$b}[1] }
+    keys %{ $exports{exports} }
+) {
+    printf "%03X 0 %08X %s\n", $exports{exports}{$export}[1], $exports{exports}{$export}[0],
         $export;
 }
 
