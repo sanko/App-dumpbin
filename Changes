@@ -2,6 +2,7 @@ Revision history for Perl extension App-dumpbin
 
 {{$NEXT}}
 
+	- Hand off to real dumpbin.exe if available
 	- Don't waste time parsing 64bit binaries on a 32bit machine
 
 0.01 2021-09-17T18:02:35Z

@@ -12,8 +12,7 @@ use App::dumpbin;
 $|++;
 
 # Just hand things off just in case
-my $me    = Path::Tiny->new(__FILE__)->absolute;
-my @paths = grep { $me ne $_ } which 'dumpbin';
+my @paths = grep {/\.exe$/} which 'dumpbin';
 exit system $paths[0], @ARGV if @paths;
 
 # No idea what to install... I use Linux
